@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 2950.7 420" style="enable-background:new 0 0 2950.7 420;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#134F3A;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;}
+	.st4{font-family:'Arial-BoldMT';}
+	.st5{font-size:109.5521px;}
+	.st6{letter-spacing:-2;}
+	.st7{font-size:87px;}
+	.st8{letter-spacing:-1;}
+	.st9{fill:#5F6F67;}
+</style>
+<rect width="2950.7" height="420" fill="transparent"/>
+<g>
+	<g transform="translate(110 70)">
+		<path class="st1" d="M144.4-12.4c84.5,0,152.4,67.9,152.4,152.4s-67.9,152.4-152.4,152.4S-8.1,224.5-8.1,140S59.8-12.4,144.4-12.4
+			z"/>
+		<path class="st0" d="M62.2,192.4V81.7c0-8.3,9.5-13.1,16.7-6l42.9,44.1c2.4,2.4,7.1,2.4,9.5,0l42.9-44.1c7.1-7.1,16.7-2.4,16.7,6
+			v110.7H161v-60.7l-23.8,25c-6,6-15.5,6-21.4,0l-23.8-25v60.7H62.2z"/>
+		<circle class="st0" cx="221.8" cy="68.6" r="11.9"/>
+		<circle class="st0" cx="246.8" cy="97.1" r="11.9"/>
+		<circle class="st0" cx="221.8" cy="125.7" r="11.9"/>
+		<path class="st2" d="M221.8,68.6l25,28.6l-25,28.6"/>
+		<circle class="st0" cx="214.6" cy="200.7" r="9.5"/>
+		<circle class="st0" cx="244.4" cy="178.1" r="7.1"/>
+		<circle class="st0" cx="250.3" cy="216.2" r="7.1"/>
+		<path class="st3" d="M214.6,200.7l29.8-22.6 M214.6,200.7l35.7,15.5"/>
+	</g>
+	<text transform="matrix(1 0 0 1 450.22 188.5961)" class="st1 st4 st5 st6">M³KG</text>
+	<text transform="matrix(1 0 0 1 450.22 292.9961)" class="st9 st4 st7 st8">Prior Knowledge-Guided Framework for Mongolian Medicine</text>
+</g>
+</svg>

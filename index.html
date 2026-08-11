@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>M³KG：先验知识驱动的蒙药知识发现框架</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="#overview" aria-label="M³KG：先验知识驱动的蒙药知识发现框架">
+          <img src="assets/m3kg_logo_minimal.svg" alt="M³KG Prior Knowledge-Guided Framework" />
+      </a>
+      <nav class="top-nav" aria-label="站内导航">
+        <a href="#overview">平台概况</a>
+        <a href="#materials">基础数据</a>
+        <a href="#graphSection">知识图谱</a>
+        <a href="#compareSection">药物对比</a>
+        <a href="#globalSearch">全库检索</a>
+        <button id="authOpenBtn" class="auth-nav-btn secondary" type="button">登录/注册</button>
+        <button id="refreshBtn" type="button">刷新</button>
+      </nav>
+    </header>
+
+    <section id="overview" class="overview-band">
+      <div class="overview-copy">
+        <p class="eyebrow">Knowledge Framework</p>
+        <h2>M³KG：先验知识驱动的蒙药知识发现框架</h2>
+        <p>
+          M³KG 是一个面向蒙药知识组织、证据检索与关联发现的先验知识驱动框架。
+          将蒙药饮片、
+          蒙医术语、药性属性、基源分类单元及跨表映射关系进行结构化建模，
+          形成可查询、可追溯、可推展的蒙药知识体系。
+        </p>
+        <p>
+          依托“味、性、效能、功能、主治”和“药材-基源分类”两条核心先验链路，
+          M³KG 支持多维筛选、全文检索、知识图谱生成、药性解释图和跨实体关联分析，
+          能够为蒙药饮片标准化整理、药性-功效关联解释、基源复核和数字化传承提供数据基础。
+        </p>
+      </div>
+      <div id="heroStats" class="hero-stats"></div>
+      <div class="notice">
+        <strong>使用说明</strong>
+        <span>检索结果用于学术研究、知识展示与数据复核，不作为临床诊疗、处方推荐或监管决策依据。</span>
+      </div>
+    </section>
+
+    <main id="materials" class="app-shell">
+      <section class="search-panel" aria-label="基础数据检索">
+        <div class="panel-heading">
+          <h2>基础数据</h2>
+          <span id="resultCount" class="muted">加载中</span>
+        </div>
+
+        <div class="search-row">
+          <input id="queryInput" type="search" placeholder="输入药材、功能、主治、药性、来源类型或拉丁学名" />
+          <button id="searchBtn" type="button">检索</button>
+        </div>
+
+        <div class="filters">
+          <label>
+            术语类别
+            <select id="termCategoryFilter"></select>
+          </label>
+          <label>
+            药性类别
+            <select id="propertyClassFilter"></select>
+          </label>
+          <label>
+            来源类型
+            <select id="sourceTypeFilter"></select>
+          </label>
+          <label>
+            Kingdom
+            <select id="kingdomFilter"></select>
+          </label>
+        </div>
+
+        <div id="materialList" class="material-list"></div>
+        <div class="pager">
+          <button id="prevBtn" type="button">上一页</button>
+          <span id="pageInfo" class="muted"></span>
+          <button id="nextBtn" type="button">下一页</button>
+        </div>
+      </section>
+
+      <section class="detail-panel" aria-label="药材详情">
+        <div id="emptyState" class="empty-state">
+          <h2>选择一味药材</h2>
+          <p>检索结果会在这里展开为 D1-D6 关系聚合、基源分类和知识图谱可视化。</p>
+        </div>
+
+        <article id="detailView" class="detail-view hidden">
+          <div class="detail-header">
+            <div>
+              <p id="detailId" class="eyebrow"></p>
+              <h2 id="detailTitle"></h2>
+            </div>
+            <div class="detail-side">
+              <div id="detailBadges" class="badge-row"></div>
+              <button id="addDetailCompareBtn" type="button" class="secondary">加入对比</button>
+            </div>
+          </div>
+          <section id="sourceDescription" class="source-description-card"></section>
+          <div class="workspace-grid">
+            <section class="subsection">
+              <div class="subsection-heading">
+                <h3>关系聚合</h3>
+              </div>
+              <div id="relationSummary" class="relation-list"></div>
+            </section>
+
+            <section class="subsection">
+              <div class="subsection-heading">
+                <h3>基源分类</h3>
+              </div>
+              <div id="regionList" class="region-list"></div>
+            </section>
+          </div>
+
+          <section id="graphSection" class="subsection graph-section">
+            <div class="subsection-heading">
+              <div>
+                <h3>知识图谱邻接视图</h3>
+                <span id="graphMeta" class="muted"></span>
+              </div>
+              <div class="graph-controls">
+                <label>
+                  布局
+                  <select id="graphLayout">
+                    <option value="force">动态力导向</option>
+                  </select>
+                </label>
+                <label>
+                  标签
+                  <select id="graphLabels">
+                    <option value="show">显示</option>
+                    <option value="hide">不显示</option>
+                  </select>
+                </label>
+                <button id="exportGraphBtn" type="button" class="secondary">导出SVG</button>
+              </div>
+            </div>
+            <div class="graph-wrap">
+              <svg id="graphSvg" viewBox="0 0 920 540" role="img" aria-label="知识图谱"></svg>
+            </div>
+            <p class="graph-help">单味药材详情会自动生成邻接图谱；当前聚焦 D1-D4 中的味、性、效能、功能、主治五类关系，并以五种颜色区分。</p>
+          </section>
+
+          <section id="interpretSection" class="subsection interpret-section">
+            <div class="subsection-heading">
+              <div>
+                <h3>药性-功效-主治可解释图</h3>
+                <span id="interpretMeta" class="muted"></span>
+              </div>
+            </div>
+            <div class="interpret-wrap">
+              <svg id="interpretSvg" viewBox="0 0 980 520" role="img" aria-label="药性功效主治可解释图"></svg>
+            </div>
+            <div id="interpretText" class="interpret-text"></div>
+          </section>
+
+        </article>
+      </section>
+    </main>
+
+    <section id="compareSection" class="compare-section">
+      <div class="subsection-heading">
+        <div>
+          <h2>药物对比</h2>
+          <span id="compareMeta" class="muted">最多选择 30 味药材，对比味、性、功能、主治和基源分类。</span>
+        </div>
+        <div class="compare-controls">
+          <label>
+            可视化
+            <select id="compareVizMode">
+              <option value="both">味-性二维图</option>
+              <option value="taste">味权重</option>
+              <option value="nature">性寒热</option>
+            </select>
+          </label>
+          <button id="clearCompareBtn" type="button" class="secondary">清空对比</button>
+        </div>
+      </div>
+
+      <div class="compare-picker">
+        <div class="compare-search-row">
+          <input id="compareQuery" type="search" placeholder="搜索药材并加入对比" />
+          <button id="compareSearchBtn" type="button">查找药材</button>
+        </div>
+        <div id="compareSearchResults" class="compare-search-results"></div>
+      </div>
+
+      <div id="compareSelected" class="compare-selected"></div>
+
+      <div class="compare-visual-card">
+        <div class="compare-visual-heading">
+          <h3>味性可视化</h3>
+          <span id="compareVizMeta" class="muted"></span>
+        </div>
+        <div id="compareVisualization" class="compare-visualization"></div>
+      </div>
+
+      <div class="compare-table-card">
+        <div class="compare-visual-heading">
+          <h3>对比矩阵</h3>
+          <span class="muted">横向滚动查看多药材差异。</span>
+        </div>
+        <div id="compareTableWrap" class="compare-table-wrap"></div>
+      </div>
+    </section>
+
+    <section id="globalSearch" class="global-search">
+      <div class="subsection-heading">
+        <h2>全库检索</h2>
+        <div class="inline-search">
+          <select id="globalType">
+            <option value="all">全部</option>
+            <option value="material">药材</option>
+            <option value="terminology">术语</option>
+            <option value="origin">基源</option>
+          </select>
+          <input id="globalQuery" type="search" placeholder="跨药材、术语和基源检索" />
+          <button id="globalSearchBtn" type="button">检索</button>
+        </div>
+      </div>
+      <div id="globalResults" class="global-results"></div>
+    </section>
+
+    <div id="authModal" class="auth-modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <div class="auth-dialog">
+        <div class="auth-dialog-head">
+          <div>
+            <p class="eyebrow">User Access</p>
+            <h2 id="authTitle">用户登录</h2>
+          </div>
+          <button id="authCloseBtn" class="icon-button" type="button" aria-label="关闭登录窗口">×</button>
+        </div>
+
+        <p class="auth-note">当前为本地演示账号，仅保存在当前浏览器，用于展示登录与注册入口。</p>
+
+        <div id="authSignedIn" class="auth-signed-in hidden">
+          <span>当前登录用户</span>
+          <strong id="authUserName"></strong>
+          <button id="authLogoutBtn" class="secondary" type="button">退出登录</button>
+        </div>
+
+        <div id="authForms">
+          <div class="auth-tabs" role="tablist" aria-label="登录注册切换">
+            <button class="auth-tab active" type="button" data-auth-tab="login">登录</button>
+            <button class="auth-tab" type="button" data-auth-tab="register">注册</button>
+          </div>
+
+          <form id="authLoginForm" class="auth-form">
+            <label>
+              用户名
+              <input id="loginUsername" name="username" autocomplete="username" required />
+            </label>
+            <label>
+              密码
+              <input id="loginPassword" name="password" type="password" autocomplete="current-password" required />
+            </label>
+            <button type="submit">登录</button>
+          </form>
+
+          <form id="authRegisterForm" class="auth-form hidden">
+            <label>
+              显示名称
+              <input id="registerDisplayName" name="displayName" autocomplete="name" required />
+            </label>
+            <label>
+              用户名
+              <input id="registerUsername" name="username" autocomplete="username" required />
+            </label>
+            <label>
+              邮箱
+              <input id="registerEmail" name="email" type="email" autocomplete="email" />
+            </label>
+            <label>
+              密码
+              <input id="registerPassword" name="password" type="password" autocomplete="new-password" required />
+            </label>
+            <label>
+              确认密码
+              <input id="registerPasswordConfirm" name="passwordConfirm" type="password" autocomplete="new-password" required />
+            </label>
+            <button type="submit">注册并登录</button>
+          </form>
+        </div>
+
+        <p id="authMessage" class="auth-message" role="status"></p>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="static-api.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

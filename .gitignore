@@ -1,0 +1,6 @@
+*.sqlite
+*.sqlite3
+*.db
+__pycache__/
+.DS_Store
+Thumbs.db
