@@ -1,6 +1,16 @@
-# M³KG
+<p align="center">
+  <a href="https://alamusibayoude.github.io/M3KG/">
+    <img src="assets/m3kg_logo_minimal.svg" alt="M³KG" width="750">
+  </a>
+</p>
 
-[中文](#中文简介) | [English](#english-overview) | [Open website](https://alamusibayoude.github.io/M3KG/)
+<p align="center">
+  <a href="#中文简介">中文</a> |
+  <a href="#english-overview">English</a> |
+  <a href="https://alamusibayoude.github.io/M3KG/">Open website</a>
+</p>
+
+---
 
 ## 中文简介
 
