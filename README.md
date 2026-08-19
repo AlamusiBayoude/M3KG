@@ -7,6 +7,7 @@
 <p align="center">
   <a href="#中文简介">中文</a> |
   <a href="#english-overview">English</a> |
+  <a href="#монгол-танилцуулга">Монгол</a> |
   <a href="https://alamusibayoude.github.io/M3KG/">Open website</a>
 </p>
 
@@ -19,6 +20,10 @@ M³KG 是一个面向蒙药知识组织、证据检索与关联发现的先验�
 ## English overview
 
 M³KG is a prior knowledge-guided framework for organizing, retrieving and discovering knowledge about Mongolian medicinal pieces. It structures medicinal pieces, Mongolian medicine terminology, traditional properties, pharmacognostic origins and cross-table mappings into a traceable and extensible knowledge system. The web explorer supports faceted search, full-text retrieval, medicine comparison, neighborhood graph exploration and interpretable property visualization.
+
+## Монгол танилцуулга
+
+M³KG нь Монгол эмийн мэдлэгийг зохион байгуулах, нотолгоонд суурилсан мэдээлэл хайх, мэдлэгийн холбоо хамаарлыг илрүүлэхэд зориулсан урьдчилсан мэдлэгт тулгуурласан хүрээ юм. Энэхүү платформ нь Монгол эмийн түүхий эд, Монгол анагаах ухааны нэр томьёо, уламжлалт шинж чанар, фармакогнозийн гарал үүсэл болон хүснэгт хоорондын зураглалын хамаарлыг бүтэцчилсэн байдлаар загварчилж, хайлт хийх боломжтой, эх сурвалжийг мөрдөн тогтоох боломжтой, өргөтгөх боломжтой Монгол эмийн мэдлэгийн тогтолцоог бүрдүүлдэг. Вэб систем нь олон нөхцөлт шүүлтүүр, бүтэн текстийн хайлт, эмийн харьцуулалт, мэдлэгийн графын хөрш холбоосын судалгаа болон эмийн шинж чанарын хамаарлыг тайлбарлахуйц байдлаар дүрслэн харуулах боломжийг дэмждэг.
 
 ## Website deployment
 
